@@ -15,7 +15,7 @@ class Feedback extends Component {
   };
 
   onLeaveFeedback(name) {
-    const message = this.show();
+    this.show();
     this.setState(prevState => {
       return { [name]: prevState[name] + 1 };
     });
@@ -39,8 +39,8 @@ class Feedback extends Component {
 
   render() {
     const { visible, good, neutral, bad } = this.state;
-    const total = this.countTotalFeedback;
     const positivePersent = this.countPositivePercentage();
+
     return (
       <div>
         <div>
