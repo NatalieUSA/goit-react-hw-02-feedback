@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 // import styles from './button.modules.css';
 import styles from './button.module.scss';
 
-const Button = ({ children, onClick, type }) => {
+const Button = ({ children, onClick, type, text }) => {
   // console.log(children);
   return (
-    <button onClick={onClick} className={styles.btn} type={type}>
+    <button onClick={onClick} className={styles.btn} type={type} text={text}>
       {children}
     </button>
   );
@@ -15,5 +15,5 @@ export default Button;
 Button.protoTypes = {
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['submit', 'button', 'reset']),
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
