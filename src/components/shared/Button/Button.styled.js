@@ -1,4 +1,6 @@
-.btn {
+import styled from 'styled-components';
+
+const Btn = styled.button`
   width: 110px;
 
   padding: 10px 30px;
@@ -13,13 +15,17 @@
   margin-left: 18px;
 
   font-size: xx-small;
-}
-.btn:hover {
-  background-color: rgb(160, 159, 159);
-  text-transform: lowercase;
-}
+  text-align: center;
 
-.btn.active {
-  background-color: deeppink;
-  color: white;
-}
+  :hover {
+    background-color: rgb(160, 159, 159);
+    text-transform: lowercase;
+  }
+`;
+
+export default Btn;
+
+// .btn.active {
+//   background-color: deeppink;
+//   color: white;
+// }

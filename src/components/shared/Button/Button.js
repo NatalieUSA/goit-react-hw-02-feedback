@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-// import styles from './button.modules.css';
-import styles from './button.module.scss';
+import Btn from './Button.styled';
 
 const Button = ({ children, onClick, type, text }) => {
   // console.log(children);
   return (
-    <button onClick={onClick} className={styles.btn} type={type} text={text}>
+    <Btn onClick={onClick} type={type} text={text}>
       {children}
-    </button>
+    </Btn>
   );
 };
+
 export default Button;
 
 Button.protoTypes = {

@@ -1,4 +1,7 @@
-@import-normalize; /* bring in normalize.css styles */
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+
+const GlobalStyle = createGlobalStyle`
 
 body {
   margin: 0;
@@ -14,7 +17,13 @@ code {
     monospace;
 }
 
-h3 {
-  margin-right: auto;
-  margin-left: auto;
-}
+h3 {  text-align: center;}
+
+`;
+
+export default GlobalStyle;
+
+// div {
+//   margin-right: auto;
+//   margin-left: auto;
+// }

@@ -4,6 +4,7 @@ import Section from 'components/shared/Section/Section';
 import Notification from 'components/shared/Notification/Notification';
 import Statistics from 'components/Statistics/Statistics';
 
+
 class Feedback extends Component {
   state = {
     good: 0,

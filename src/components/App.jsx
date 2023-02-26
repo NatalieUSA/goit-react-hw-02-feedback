@@ -1,19 +1,14 @@
-import '../../src/index.css';
 import Feedback from './Feedback/Feedback';
+import GlobalStyle from './GlobalStyle';
+import Container from './Container';
 
-export const App = () => {
+const App = () => {
   return (
-    <div
-    // style={{
-    //   height: '100vh',
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   fontSize: 40,
-    //   color: '#010101',
-    // }}
-    >
+    <Container>
+      <GlobalStyle />
       <Feedback />
-    </div>
+    </Container>
   );
 };
+
+export default App;
