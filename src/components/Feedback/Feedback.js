@@ -1,28 +1,22 @@
 import { Component } from 'react';
-import Button from 'components/shared/Button/Button';
-import Section from 'components/shared/Section/Section';
+import SectionTitle from 'components/shared/Section/Section';
 import Notification from 'components/shared/Notification/Notification';
+import Section from 'components/shared/Section/Section';
+import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
 import Statistics from 'components/Statistics/Statistics';
-
 
 class Feedback extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
-    visible: false,
   };
 
-  show = () => {
-    this.setState({ visible: true });
-  };
-
-  onLeaveFeedback(name) {
-    this.show();
+  onLeaveFeedback = name => {
     this.setState(prevState => {
       return { [name]: prevState[name] + 1 };
     });
-  }
+  };
 
   countTotalFeedback() {
     const { good, neutral, bad } = this.state;
@@ -36,120 +30,44 @@ class Feedback extends Component {
     if (!total) {
       return 0;
     }
-    const result = Number(((good * 100) / total).toFixed(0));
+    const result = ((good * 100) / total).toFixed(0);
     return result;
   }
 
   render() {
-    const { visible, good, neutral, bad } = this.state;
+    const { good, neutral, bad } = this.state;
     const positivePersent = this.countPositivePercentage();
+    const total = this.countTotalFeedback();
+    const onLeaveFeedback = this.onLeaveFeedback;
 
     return (
       <div>
-        <Section title="Please leave feedback">
-          <Button type="button" onClick={() => this.onLeaveFeedback('good')}>
-            Good
-          </Button>
-          <Button type="button" onClick={() => this.onLeaveFeedback('neutral')}>
-            Neutral
-          </Button>
-          <Button type="button" onClick={() => this.onLeaveFeedback('bad')}>
-            Bad
-          </Button>
-        </Section>
+        <div>
+          <SectionTitle title="Please leave feedback" />
 
-        <Section title="Statistics">
-          {visible && (
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onClick={onLeaveFeedback}
+          />
+        </div>
+        <div>
+          <Section title="Statistics" />
+
+          {total ? (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
+              total={total}
               positivePersent={positivePersent}
             />
+          ) : (
+            <Notification message="There is no feedback" />
           )}
-          {!visible && <Notification message="There is no feedback" />}
-        </Section>
+        </div>
       </div>
     );
   }
 }
 
 export default Feedback;
-
-// import { Component } from 'react';
-// import Button from 'components/shared/Button/Button';
-// import SectionTitle from 'components/shared/Section/Section';
-
-// class Feedback extends Component {
-//   state = {
-//     good: 0,
-//     neutral: 0,
-//     bad: 0,
-//     visible: false,
-//   };
-
-//   show = () => {
-//     this.setState({ visible: true });
-//   };
-
-//   onLeaveFeedback(name) {
-//     this.show();
-//     this.setState(prevState => {
-//       return { [name]: prevState[name] + 1 };
-//     });
-//   }
-
-//   countTotalFeedback() {
-//     const { good, neutral, bad } = this.state;
-//     const total = good + neutral + bad;
-//     return total;
-//   }
-
-//   countPositivePercentage() {
-//     const total = this.countTotalFeedback();
-//     const { good } = this.state;
-//     if (!total) {
-//       return 0;
-//     }
-//     const result = ((good * 100) / total).toFixed(0);
-//     return result;
-//   }
-
-//   render() {
-//     const { visible, good, neutral, bad } = this.state;
-//     const positivePersent = this.countPositivePercentage();
-
-//     return (
-//       <div>
-//         <div>
-//           title
-//           <SectionTitle>Please leave feedback</SectionTitle>
-//           <Button type="button" onClick={() => this.onLeaveFeedback('good')}>
-//             Good
-//           </Button>
-//           <Button type="button" onClick={() => this.onLeaveFeedback('neutral')}>
-//             Neutral
-//           </Button>
-//           <Button type="button" onClick={() => this.onLeaveFeedback('bad')}>
-//             Bad
-//           </Button>
-//         </div>
-//         <div>
-//           <SectionTitle>Statistics</SectionTitle>
-
-//           {visible && (
-//             <div>
-//               <p>Good: {good}</p>
-//               <p>Neutral: {neutral} </p>
-//               <p>Bad: {bad} </p>
-//               <p>Positive feedback: {positivePersent}%</p>
-//             </div>
-//           )}
-//           {!visible && <p>There is no feedback</p>}
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Feedback;
