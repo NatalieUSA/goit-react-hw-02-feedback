@@ -14,7 +14,7 @@ const Btn = styled.button`
   text-transform: uppercase;
   margin-left: 18px;
 
-  font-size: xx-small;
+  font-size: small;
   text-align: center;
 
   :hover {
